@@ -12,11 +12,8 @@ library(shiny)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
     
-    deforestation <- read.csv("data/deforestation.csv")
-    deforestation_meta <- read.csv("data/deforestation_metadata.csv")
-    # housing <- read.delim("data/housing975.xls")
-
-    print(deforestation)
+    data <- read.csv("data/compiled_data.csv")
+    print(data)
     # print(housing)
 
 })
