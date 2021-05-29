@@ -11,16 +11,12 @@ library(shiny)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
+    
+    deforestation <- read.csv("data/deforestation.csv")
+    deforestation_meta <- read.csv("data/deforestation_metadata.csv")
+    # housing <- read.delim("data/housing975.xls")
 
-    output$distPlot <- renderPlot({
-
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white')
-
-    })
+    print(deforestation)
+    # print(housing)
 
 })
