@@ -9,12 +9,25 @@
 
 library(shiny)
 library(tidyverse)
+data <- read.csv("data/compiled_data.csv")
+countries <- c("Global", "United.States", "China", "Mexico", "Canada",
+               "Japan", "Germany", "Vietnam", "South.Korea", "Switzerland",
+               "Ireland", "India")
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
     
     data <- read.csv("data/compiled_data.csv")
     print(data)
-    # print(housing)
+    
+    output$scatterplot <- renderPlot({
+        country <- input$country
+        country.data <- subset(data, select = c("year", "price_aggregate", country))
+        colnames(country.data) <- c("year", "price_aggregate", "country")
+        ggplot(country.data, aes(x = country, y = price_aggregate)) + geom_point()
+    })
+    
+    
+    
 
 })
