@@ -13,8 +13,10 @@ library(tidyverse)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
     
-    data <- read.csv("data/compiled_data.csv")
-    print(data)
-    # print(housing)
+    data <- read.csv("HousingAndDeforestation/data/compiled_data.csv")
+    output$scatterplot <- renderPlot(({
+        
+        
+    }))
 
 })
