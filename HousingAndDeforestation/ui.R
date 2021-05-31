@@ -1,34 +1,24 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 library(tidyverse)
+data <- read.csv("data/compiled_data.csv")
+countries <- c("Global", "United.States", "China", "Mexico", "Canada",
+               "Japan", "Germany", "Vietnam", "South.Korea", "Switzerland",
+               "Ireland", "India")
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
-
-    # Application title
-    titlePanel("Old Faithful Geyser Data"),
-
-    # Sidebar with a slider input for number of bins
+    
+    titlePanel("US Housing Prices and Global Deforestation"),
     sidebarLayout(
         sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
+            selectInput(inputId = "country", label = strong("Deforestation by Country"),
+                        choices = countries, selected = "Global")
         ),
-
-        # Show a plot of the generated distribution
+        
         mainPanel(
-            plotOutput("distPlot")
+            plotOutput("scatterplot"),
+            textOutput("desc")
         )
+        
     )
 ))
