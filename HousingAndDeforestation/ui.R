@@ -39,6 +39,7 @@ shinyUI(fluidPage(
     ),
     
     
+    
     p("This scatterplot interactively maps the relationship
       between total forest coverage across the globe (data
       source 1), and the median price of homes in the United
