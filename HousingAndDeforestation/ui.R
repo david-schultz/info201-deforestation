@@ -96,5 +96,6 @@ shinyUI(fluidPage(
     p("Data source 3: Trading Economics, obtained from:",
       tags$a(href="https://tradingeconomics.com/united-states/imports-of-lumber-wood-in-the-rough.",
              "tradingeconomics.com"), ".")
+
     
 ))
