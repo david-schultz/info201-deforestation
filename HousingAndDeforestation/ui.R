@@ -54,4 +54,16 @@ shinyUI(fluidPage(
     
     h3("Bibliography"),
     
+    p("Data source 1: The World Bank, obtained from:",
+      tags$a(href="https://data.worldbank.org/indicator/AG.LND.FRST.K2?end=2010&start=1990",
+             "data.worldbank.org"), "."),
+    
+    p("Data source 2: US Census, Section 20.974, obtained from:",
+      tags$a(href="https://www.census.gov/library/publications/2011/compendia/statab/131ed/construction-housing.html",
+             "www.census.gov"), "."),
+    
+    p("Data source 3: Trading Economics, obtained from:",
+      tags$a(href="https://tradingeconomics.com/united-states/imports-of-lumber-wood-in-the-rough.",
+             "tradingeconomics.com"), "."),
+    
 ))
