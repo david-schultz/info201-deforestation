@@ -17,9 +17,6 @@ countries <- c("Global", "United.States", "China", "Mexico", "Canada",
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
     
-    data <- read.csv("data/compiled_data.csv")
-    print(data)
-    
     output$scatterplot <- renderPlot({
         country <- input$country
         country.data <- subset(data, select = c("year", "price_aggregate", country))
