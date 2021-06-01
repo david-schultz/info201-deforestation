@@ -17,7 +17,8 @@ shinyUI(fluidPage(
         
         mainPanel(
             plotOutput("scatterplot"),
-            textOutput("desc")
+            textOutput("desc"),
+            p("aksld;fgjlkf;sadgj")
         )
         
     )
