@@ -28,7 +28,22 @@ shinyUI(fluidPage(
     ), 
     
     
+    h3("Analysis"),
     
+    p("We initially set out to see if the US Housing market was
+      impacted by deforestation, with the logic being that
+      deforestation would lead to a decrease in the supply of
+      lumber and thus increase the price of houses."),
+    
+    p("We used three sources of data:"),
+    
+    tags$ol(
+      tags$li("Global Forest Cover by sq. km."),
+      tags$li("New Privately-Owned One-Family Houses Sold
+                 by Region and Type of Financing, and by
+                 Sales-Price Group in the US."),
+      tags$li("US Lumber Imports by Country.")
+    ),
     
     p("This scatterplot maps the relationship between total forest
       coverage across the globe (data source 1), and the median price 
@@ -83,6 +98,4 @@ shinyUI(fluidPage(
     p("Data source 3: Trading Economics, obtained from:",
       tags$a(href="https://tradingeconomics.com/united-states/imports-of-lumber-wood-in-the-rough.",
              "tradingeconomics.com"), ".")
-    
-    
 ))
