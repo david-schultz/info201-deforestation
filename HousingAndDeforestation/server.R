@@ -27,7 +27,7 @@ shinyServer(function(input, output) {
         if (country == "Global") {
             country = "the Earth"
         }
-        ggplot(country.data, aes(x = country, y = price_aggregate)) + 
+        ggplot(country.data, aes(x = country, y = price_aggregate, col=year)) + 
             geom_point() +
             labs(x = paste("Total Forest Area of", country, "in sq. km"), y = "Median Price of Home in United States")
     })
