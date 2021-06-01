@@ -20,6 +20,30 @@ shinyServer(function(input, output) {
     
     data <- read.csv("data/compiled_data.csv")
     
+    output$trends1 <- renderPlot({
+        country <- input$country
+        country.data <- subset(data, select = c("year", "price_aggregate", country))
+        colnames(country.data) <- c("year", "price_aggregate", "country")
+        if (country == "Global") {
+            country = "the Earth"
+        }
+        ggplot(country.data, aes(x = year, y = price_aggregate)) + 
+            geom_point() +
+            labs(x = "Year", y = "Median Price of Home in United States")
+    })
+    
+    output$trends2 <- renderPlot({
+        country <- input$country
+        country.data <- subset(data, select = c("year", "price_aggregate", country))
+        colnames(country.data) <- c("year", "price_aggregate", "country")
+        if (country == "Global") {
+            country = "the Earth"
+        }
+        ggplot(country.data, aes(x = year, y = country)) + 
+            geom_point() +
+            labs(x = "Year", y = paste("Total Forest Area of", country, "in sq. km"))
+    })
+    
     output$scatterplot <- renderPlot({
         country <- input$country
         country.data <- subset(data, select = c("year", "price_aggregate", country))
@@ -27,12 +51,17 @@ shinyServer(function(input, output) {
         if (country == "Global") {
             country = "the Earth"
         }
-        ggplot(country.data, aes(x = country, y = price_aggregate, col=year)) + 
+        ggplot(country.data, aes(x = country, y = price_aggregate, color = year)) + 
             geom_point() +
-            labs(x = paste("Total Forest Area of", country, "in sq. km"), y = "Median Price of Home in United States! ")
+            labs(x = paste("Total Forest Area of", country, "in sq. km"), y = "Median Price of Home in United States", color = "Year")
     })
     
+    output$something <- renderPlot({
+        
+    })
     
+    output$intro <- renderPrint("put introduction here")
+    output$analysis <- renderPrint("put analysis here")
     
     
 })
