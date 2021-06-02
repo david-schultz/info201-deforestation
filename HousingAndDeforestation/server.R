@@ -29,7 +29,7 @@ shinyServer(function(input, output) {
         }
         ggplot(country.data, aes(x = year, y = price_aggregate)) + 
             geom_point() +
-            labs(x = "Year", y = "Median Price of Home in United States")
+            labs(x = "Year", y = "Median Price of Home in United States", main = "Trends 1")
     })
     
     output$trends2 <- renderPlot({
