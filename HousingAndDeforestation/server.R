@@ -11,6 +11,7 @@ library(shiny)
 library(tidyverse)
 
 data <- read.csv("data/compiled_data.csv")
+proportion.data <- read.csv("data/proportion_data.csv")
 countries <- c("Global", "United.States", "China", "Mexico", "Canada",
                "Japan", "Germany", "Chile", "Finland", "Indonesia",
                "United.Kingdom", "Brazil")
