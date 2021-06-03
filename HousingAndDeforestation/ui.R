@@ -2,8 +2,9 @@ library(shiny)
 library(tidyverse)
 data <- read.csv("data/compiled_data.csv")
 countries <- c("Global", "United.States", "China", "Mexico", "Canada",
-               "Japan", "Germany", "Vietnam", "South.Korea", "Switzerland",
-               "Ireland", "India")
+               "Japan", "Germany", "Chile", "Finland", "Indonesia",
+               "United.Kingdom", "Brazil")
+
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
@@ -71,7 +72,7 @@ shinyUI(fluidPage(
       tabPanel("Graph 1",
         sidebarLayout(
           sidebarPanel(
-            selectInput(inputId = "country", label = strong("Deforestation by Country"),
+            selectInput(inputId = "country1", label = strong("Deforestation by Country"),
                         choices = countries, selected = "Global")),
             mainPanel(plotOutput("trends1"), plotOutput("trends2"))
         )
@@ -80,7 +81,7 @@ shinyUI(fluidPage(
       tabPanel("Graph 2",
         sidebarLayout(
           sidebarPanel(
-            selectInput(inputId = "country", label = strong("Deforestation by Country"),
+            selectInput(inputId = "country2", label = strong("Deforestation by Country"),
                         choices = countries, selected = "Global")),
           mainPanel(plotOutput("scatterplot"), textOutput("desc"))
         )
@@ -89,9 +90,29 @@ shinyUI(fluidPage(
       tabPanel("Graph 3",
         sidebarLayout(
           sidebarPanel(
-            selectInput(inputId = "country", label = strong("Deforestation by Country"),
+            selectInput(inputId = "country3", label = strong("Deforestation by Country"),
                         choices = countries, selected = "Global")),
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          ########  ADD GRAPH 3 HERE
           mainPanel()
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
         )
       ),
       

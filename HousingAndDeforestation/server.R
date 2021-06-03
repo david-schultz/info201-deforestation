@@ -12,8 +12,8 @@ library(tidyverse)
 
 data <- read.csv("data/compiled_data.csv")
 countries <- c("Global", "United.States", "China", "Mexico", "Canada",
-               "Japan", "Germany", "Vietnam", "South.Korea", "Switzerland",
-               "Ireland", "India")
+               "Japan", "Germany", "Chile", "Finland", "Indonesia",
+               "United.Kingdom", "Brazil")
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -21,7 +21,7 @@ shinyServer(function(input, output) {
     data <- read.csv("data/compiled_data.csv")
     
     output$trends1 <- renderPlot({
-        country <- input$country
+        country <- input$country1
         country.data <- subset(data, select = c("year", "price_aggregate", country))
         colnames(country.data) <- c("year", "price_aggregate", "country")
         if (country == "Global") {
@@ -33,7 +33,7 @@ shinyServer(function(input, output) {
     })
     
     output$trends2 <- renderPlot({
-        country <- input$country
+        country <- input$country1
         country.data <- subset(data, select = c("year", "price_aggregate", country))
         colnames(country.data) <- c("year", "price_aggregate", "country")
         if (country == "Global") {
@@ -45,7 +45,7 @@ shinyServer(function(input, output) {
     })
     
     output$scatterplot <- renderPlot({
-        country <- input$country
+        country <- input$country2
         country.data <- subset(data, select = c("year", "price_aggregate", country))
         colnames(country.data) <- c("year", "price_aggregate", "country")
         if (country == "Global") {
@@ -60,8 +60,6 @@ shinyServer(function(input, output) {
         
     })
     
-    output$intro <- renderPrint("put introduction here")
-    output$analysis <- renderPrint("put analysis here")
     
     
 })
