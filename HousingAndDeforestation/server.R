@@ -76,5 +76,38 @@ shinyServer(function(input, output) {
             labs(x = paste("Total Forest Area of", country, "in sq. km"), y = "Median Price of Home in United States", color = "Year")
     })
     
+    output$conclusionplot <- renderPlot({
+        country.canada_data <- subset(data, select = c("year", "price_aggregate", "Canada"))
+        country.china_data <- subset(data, select = c("year", "price_aggregate", "China"))
+        colnames(country.canada_data) <- c("year", "price_aggregate", "country")
+        
+        ggplot() + 
+            geom_point(data=country.canada_data, aes(x = "Canada", y = price_aggregate, color = year)) +
+            geom_point(data=country.china_data, aes(x = "China", y = price_aggregate, color = year)) +
+            labs(x = paste("Country"), y = "Median Price of Home in United States", color = "Year")
+    })
     
+    output$canadaplot <- renderPlot({
+        country <- "Canada"
+        country.data <- subset(data, select = c("year", "price_aggregate", country))
+        colnames(country.data) <- c("year", "price_aggregate", "country")
+        if (country == "Global") {
+            country = "the Earth"
+        }
+        ggplot(country.data, aes(x = country, y = price_aggregate, color = year)) + 
+            geom_point() +
+            labs(x = paste("Total Forest Area of", country, "in sq. km"), y = "Median Price of Home in United States", color = "Year")
+    })
+    
+    output$chinaplot <- renderPlot({
+        country <- "China"
+        country.data <- subset(data, select = c("year", "price_aggregate", country))
+        colnames(country.data) <- c("year", "price_aggregate", "country")
+        if (country == "Global") {
+            country = "the Earth"
+        }
+        ggplot(country.data, aes(x = country, y = price_aggregate, color = year)) + 
+            geom_point() +
+            labs(x = paste("Total Forest Area of", country, "in sq. km"), y = "Median Price of Home in United States", color = "Year")
+    })
 })
