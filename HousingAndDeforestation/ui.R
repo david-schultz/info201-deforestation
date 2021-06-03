@@ -13,6 +13,7 @@ shinyUI(fluidPage(
     titlePanel("US Housing Prices and Global Deforestation"),
     tabsetPanel(
       tabPanel("Introduction",
+               
                h3("Introduction"),
                
                p("We initially set out to see if the US Housing market was
@@ -35,94 +36,82 @@ shinyUI(fluidPage(
                   of homes in the United States (data source 2) between the years 
                   1990 - 2010. This scatterplot can be separated into regions. The 
                   regions above were chosen by largest US lumber import percentage 
-                  in 2020 (data source 3)."),
+                  in 2020 (data source 3).")
                
-               p("When we look at forest coverage globally, there seems to be a 
-                  correlation between decreasing forest cover and rising housing costs 
-                  in the US. However, we do not think that this is a causal relationship. 
-                  This is because opposing patterns emerge when we look at region-specific
-                  forest coverage data."),
                
-               p("Because the US imports more lumber from China than any other country, 
-                  if we take our hypothesis that global deforestation affects the US housing 
-                  market, we would assume that China’s lumber availability would have the 
-                  largest impact on US housing prices. We would expect to see that as China’s
-                  forest coverage decreases, US housing prices increase."),
-               
-               p("But, the opposite is true ― we see a complete inverse of the trend when 
-                  compared to global forest coverage. This is because China’s forest coverage 
-                  generally increased, as did US housing prices, during our observed time 
-                  period beginning from 1990 and ending in 2010."),
-               
-               p("So, while it is possible that global lumber availability affects the US 
-                  housing market, it is unlikely that it is a significant factor. Our limited 
-                  data-set indicates that housing prices are simply increasing with time. The 
-                  trend we see from the global graph only appears because global forest 
-                  coverage is consistently decreasing with time."),
-               
-               p("It is highly likely that other unobserved variables affecting the US housing 
-                  market are also changing over time, and create a spurious relationship between 
-                  forest coverage and US housing prices. "),
-               
-               p("This conclusion is further supported by the graphs of other major contributors 
-                  of lumber to the US, which all have the oldest observations at the lowest housing
-                  prices regardless of where that happens to be on the axis of forest coverage in 
-                  that country.")
       ), 
       
       tabPanel("Graph 1",
         sidebarLayout(
           sidebarPanel(
-            selectInput(inputId = "country1", label = strong("Deforestation by Country"),
-                        choices = countries, selected = "Global")),
-            mainPanel(plotOutput("trends1"), plotOutput("trends2"))
+            selectInput(inputId = "graph1", label = strong("Deforestation by Country"),
+                        choices = c("Total", "Individual Countries"), selected = "Total")),
+            mainPanel(plotOutput(("imports")))
+                  
+                 
         )
       ),
       
       tabPanel("Graph 2",
         sidebarLayout(
           sidebarPanel(
-            selectInput(inputId = "country2", label = strong("Deforestation by Country"),
+            selectInput(inputId = "graph2", label = strong("Deforestation by Country"),
                         choices = countries, selected = "Global")),
-          mainPanel(plotOutput("scatterplot"), textOutput("desc"))
+            mainPanel(plotOutput("trends1"), plotOutput("trends2"))
         )
       ),
       
       tabPanel("Graph 3",
         sidebarLayout(
           sidebarPanel(
-            selectInput(inputId = "country3", label = strong("Deforestation by Country"),
+            selectInput(inputId = "graph3", label = strong("Deforestation by Country"),
                         choices = countries, selected = "Global")),
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          ########  ADD GRAPH 3 HERE
-          mainPanel()
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+          mainPanel(plotOutput("scatterplot"), textOutput("desc"))
         )
       ),
       
+      
+      
       tabPanel("Analysis",
+               
         h3("Analysis"),
+        
+        p("When we look at forest coverage globally, there seems to be a 
+        correlation between decreasing forest cover and rising housing costs
+        in the US. However, we do not think that this is a causal relationship. 
+        This is because opposing patterns emerge when we look at region-specific
+        forest coverage data."),
+        
+        p("Because the US imports almost a quarter of its lumber from China, 
+        if we take our hypothesis that global deforestation affects the US housing 
+        market, we would assume that China’s lumber availability would have a very
+        significant impact on US housing prices. We would expect to see that as China’s
+        forest coverage decreases, US housing prices increase."),
+        
+        p("But, the opposite is true ― we see a complete inverse of the trend when 
+        compared to global forest coverage. This is because China’s forest coverage 
+        generally increased, as did US housing prices, during our observed time 
+        period beginning from 1990 and ending in 2010."),
+        
+        p("So, while it is possible that global lumber availability affects the US 
+        housing market, it is unlikely that it is a significant factor. Our limited 
+        data-set indicates that housing prices are simply increasing with time. The 
+        trend we see from the global graph only appears because global forest 
+        coverage is consistently decreasing with time."),
+        
+        p("It is highly likely that other unobserved variables affecting the US housing 
+        market are also changing over time, and create a spurious relationship between 
+        forest coverage and US housing prices. "),
+        
+        p("This conclusion is further supported by the graphs of other major contributors 
+        of lumber to the US, which all have the oldest observations at the lowest housing
+        prices regardless of where that happens to be on the axis of forest coverage in 
+        that country.")
         
       ),
       
       tabPanel("Bibliography",
+               
          h3("Bibliography"),
          
          p("Data source 1: The World Bank, obtained from:",

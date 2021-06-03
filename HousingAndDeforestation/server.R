@@ -10,8 +10,7 @@
 library(shiny)
 library(tidyverse)
 
-data <- read.csv("data/compiled_data.csv")
-proportion.data <- read.csv("data/proportion_data.csv")
+
 countries <- c("Global", "United.States", "China", "Mexico", "Canada",
                "Japan", "Germany", "Chile", "Finland", "Indonesia",
                "United.Kingdom", "Brazil")
@@ -20,9 +19,29 @@ countries <- c("Global", "United.States", "China", "Mexico", "Canada",
 shinyServer(function(input, output) {
     
     data <- read.csv("data/compiled_data.csv")
+    proportion.data <- read.csv("data/proportion_data.csv")
+    
+    output$imports <- renderPlot({
+        
+        if (input$graph1 == "Total") {
+            compare <- data.frame(matrix(nrow = 2, ncol = 2))
+            colnames(compare) <- c("Country", "Proportion")
+            compare$Country[1] <- "Total"
+            compare$Country[2] <- "Top Ten Countries"
+            compare$Proportion[1] <- 1
+            compare$Proportion[2] <- sum(proportion.data$Proportion) - 1
+            ggplot(compare, aes(x = Country, y = Proportion)) +
+                geom_bar(stat = "identity") + 
+                labs(x = "Proportion of US Imports")
+        } else {
+            proportion.data <- subset(proportion.data, Country != "World")
+            ggplot(proportion.data, aes(x = Country, y = Proportion)) +
+                geom_bar(stat = "identity")
+        }
+    })
     
     output$trends1 <- renderPlot({
-        country <- input$country1
+        country <- input$graph2
         country.data <- subset(data, select = c("year", "price_aggregate", country))
         colnames(country.data) <- c("year", "price_aggregate", "country")
         if (country == "Global") {
@@ -34,7 +53,7 @@ shinyServer(function(input, output) {
     })
     
     output$trends2 <- renderPlot({
-        country <- input$country1
+        country <- input$graph2
         country.data <- subset(data, select = c("year", "price_aggregate", country))
         colnames(country.data) <- c("year", "price_aggregate", "country")
         if (country == "Global") {
@@ -46,7 +65,7 @@ shinyServer(function(input, output) {
     })
     
     output$scatterplot <- renderPlot({
-        country <- input$country2
+        country <- input$graph3
         country.data <- subset(data, select = c("year", "price_aggregate", country))
         colnames(country.data) <- c("year", "price_aggregate", "country")
         if (country == "Global") {
@@ -56,11 +75,6 @@ shinyServer(function(input, output) {
             geom_point() +
             labs(x = paste("Total Forest Area of", country, "in sq. km"), y = "Median Price of Home in United States", color = "Year")
     })
-    
-    output$something <- renderPlot({
-        
-    })
-    
     
     
 })
