@@ -44,7 +44,7 @@ shinyUI(fluidPage(
       tabPanel("Graph 1",
         sidebarLayout(
           sidebarPanel(
-            selectInput(inputId = "graph1", label = strong("Deforestation by Country"),
+            selectInput(inputId = "graph1", label = strong("Proportion of US Lumber Imports By Country"),
                         choices = c("Total", "Individual Countries"), selected = "Total")),
             mainPanel(plotOutput(("imports")))
                   
@@ -77,36 +77,39 @@ shinyUI(fluidPage(
         h3("Analysis"),
         
         p("When we look at forest coverage globally, there seems to be a 
-        correlation between decreasing forest cover and rising housing costs
-        in the US. However, we do not think that this is a causal relationship. 
-        This is because opposing patterns emerge when we look at region-specific
-        forest coverage data."),
+          correlation between decreasing forest cover and rising housing costs
+          in the US. However, we cannot conclude that this is a causal relationship. 
+          This is because opposing patterns emerge when we look at region-specific
+          forest coverage data."),
         
-        p("Because the US imports almost a quarter of its lumber from China, 
-        if we take our hypothesis that global deforestation affects the US housing 
-        market, we would assume that China’s lumber availability would have a very
-        significant impact on US housing prices. We would expect to see that as China’s
-        forest coverage decreases, US housing prices increase."),
+        p("Canada is the largest contributor to lumber imports in the US at just over
+          40%, and Canada's significant decrease in forest area does support the
+          hypothesis that deforestation is contributing to rising housing costs in the 
+          US, but other major contributores like the US itself and China at 25% of US
+          imports have seen significant increases in forest coverage. Because change in
+          forest coverage for each of the major contributing countries is almost perfectly
+          linear, it is impossible to determine whether change in forest coverage is actually
+          reflected in changes in housing prices. It is possible that the US and China with
+          increasing forest coverage are working towards decreasing housing prices, but 
+          this effect is overpowered by Canada and other countries with decreasing forest
+          coverage and that is why we see the general trend of increasing housing prices."),
         
-        p("But, the opposite is true ― we see a complete inverse of the trend when 
-        compared to global forest coverage. This is because China’s forest coverage 
-        generally increased, as did US housing prices, during our observed time 
-        period beginning from 1990 and ending in 2010."),
+        p("It is also worth mentioning that China's change in forest coverage is an increase
+          of around four hundred thousand square kilometers, which dwarfs the changes in
+          Canada and US which are around ten thousand and forty thousand respectively.
+          Despite the signficant disparity between China and Canada in contribution of
+          lumber imports for the United States, this difference in change of forest coverage
+          seems even more significant and also works against the hypothesis that deforestation
+          is causing increased housing prices."),
         
-        p("So, while it is possible that global lumber availability affects the US 
-        housing market, it is unlikely that it is a significant factor. Our limited 
-        data-set indicates that housing prices are simply increasing with time. The 
-        trend we see from the global graph only appears because global forest 
-        coverage is consistently decreasing with time."),
-        
-        p("It is highly likely that other unobserved variables affecting the US housing 
-        market are also changing over time, and create a spurious relationship between 
-        forest coverage and US housing prices. "),
-        
-        p("This conclusion is further supported by the graphs of other major contributors 
-        of lumber to the US, which all have the oldest observations at the lowest housing
-        prices regardless of where that happens to be on the axis of forest coverage in 
-        that country.")
+        p("While the worldwide trend is still significant deforestation correlated with
+          rising housing prices and it is possible that this is a causal relationship,
+          the issues previously raised and the fact that the scatter plot for every
+          individual country follows the pattern of having the oldest years at the
+          bottom of the graph and most recent years at the top of the graph regardless
+          of what the forest area trend looks like, leads us to believe that other
+          factors are more likely cuasing increases in housing prices and certainly stops
+          us from claiming that deforestation is definitevely a major factor.")
         
       ),
       
