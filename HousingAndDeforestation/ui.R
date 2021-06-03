@@ -132,8 +132,8 @@ shinyUI(fluidPage(
            tags$a(href="https://www.census.gov/library/publications/2011/compendia/statab/131ed/construction-housing.html",
                   "www.census.gov"), "."),
          
-         p("Data source 3: Trading Economics, obtained from:",
+         p("Data source 3: United States Wood Imports, obtained from:",
            tags$a(href="https://tradingeconomics.com/united-states/imports-of-lumber-wood-in-the-rough.",
-                  "tradingeconomics.com"), ".")
+                  "data.worldbank.org"), ".")
        )
   )))
